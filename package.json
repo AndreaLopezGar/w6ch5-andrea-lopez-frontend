@@ -1,9 +1,9 @@
 {
   "name": "week6.challenge5.front",
   "version": "1.0.0",
-  "description": "Week 6 - Challenge weekend - Front",
+  "description": "Week 6 - Challenge weekend",
   "type": "module",
-  "main": "main.ts",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -19,7 +19,7 @@
     "api": "json-server --watch ./api/db.json"
   },
   "keywords": [],
-  "author": "eliasmr98",
+  "author": "Andrea López",
   "license": "ISC",
   "prettier": {
     "singleQuote": true
@@ -52,6 +52,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.18.0"
+    "react-router-dom": "^6.18.0",
+    "@reduxjs/toolkit": "^1.8.1",
+    "react-redux": "^8.0.1"
   }
 }
