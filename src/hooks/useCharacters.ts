@@ -1,29 +1,19 @@
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store/store';
 import { useCallback, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Character } from '../model/character';
-import { loadThunk } from '../redux/playersthunks';
-import { ApiCharacterRepository } from '../services/api.characters.repo';
-import { AppDispatch, RootState } from '../store/store';
+import { CharacterApiRepo } from '../services/api.characters.repo';
+import { loadCharacterThunks } from '../redux/charactersthunks';
 
 export function useCharacters() {
-  const repo = useMemo(
-    () =>
-      new ApiCharacterRepository(
-        'https://jesus-aa-202307-w6ch5-jesus-alvarez-back.onrender.com/players'
-      ),
-    []
-  );
-
-  const CharactersState = useSelector(
-    (state: RootState) => state.tennisPlayers
-  );
   const dispatch = useDispatch<AppDispatch>();
+  const repo = useMemo(() => new CharacterApiRepo(), []);
 
   const loadCharacters = useCallback(async () => {
-    dispatch(loadThunk(repo));
-  }, [repo, dispatch]);
-
-  return {
-    loadCharacters,
-  };
+    try {
+      dispatch(loadCharacterThunks(repo));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  }, [dispatch, repo]);
+  return loadCharacters;
 }
